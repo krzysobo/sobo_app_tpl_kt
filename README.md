@@ -1,4 +1,4 @@
-Sobo App TPL - a library of useful utils and Application Template for Kotlin
+Sobo App TPL - a library of useful utils and Application Template for Kotlin projects
 
 Author:   Krzysztof Sobolewski <krzysobo_dev@o2.pl>
 Website:  https://www.krzysztofsobolewski.info/
