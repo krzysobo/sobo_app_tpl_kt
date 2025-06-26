@@ -11,6 +11,11 @@
 
     <string name="dashboard">Dashboard</string>
     <string name="dashboard_long_s">%1$s Dashboard - user's own homepage</string>
+    <string name="update_settings">Update Settings</string>
+    <string name="settings_updated_ok">Settings Updated OK</string>
+    <string name="settings_updated_ok_desc">Your settings have been successfully updated.</string>
+    <string name="settings_updating_error">Settings Updating Error</string>
+
 
     <string name="actions">Actions</string>
 
