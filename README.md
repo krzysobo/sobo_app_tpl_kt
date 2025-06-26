@@ -10,4 +10,4 @@ LinkedIn:   https://www.linkedin.com/in/krzysztof-sobolewski-39694a103/
 License:    Apache 2.0
 
 for now, it can only be implemented by implementation(project(":soboAppTpl")
-
+!!!
