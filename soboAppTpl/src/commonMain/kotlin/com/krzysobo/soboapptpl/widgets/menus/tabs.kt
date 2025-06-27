@@ -1,5 +1,6 @@
 package com.krzysobo.soboapptpl.widgets.menus
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -8,6 +9,7 @@ import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.NonSkippableComposable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -26,9 +28,43 @@ import com.krzysobo.soboapptpl.service.SoboRouter
 import com.krzysobo.soboapptpl.service.anyResText
 import com.krzysobo.soboapptpl.service.filterRoutesByUserStatus
 import com.krzysobo.soboapptpl.service.filterRoutesForMenuWithoutUser
+import com.krzysobo.soboapptpl.viewmodel.AppViewModelVM
 import com.krzysobo.soboapptpl.widgets.routerOutlet
 import kotlinx.coroutines.launch
 
+@Composable
+@NonSkippableComposable
+fun loginLogoutButton(
+    actionLogout: () -> Unit = {},
+    isUserLoggedIn: () -> Boolean = { false },
+    isUserLoggedInAdmin: () -> Boolean = { false },
+    showOnlyLogoutButton: Boolean = true
+) {
+    val coroutineScope = rememberCoroutineScope()
+    println("loginLogoutButton -- TESTXX - AUTH USED? ${SoboRouter.authUsed} IS USER LOGGED IN? ${isUserLoggedIn()} ADMIN? ${isUserLoggedInAdmin()}")
+    /**
+     * login/logout button widget
+     */
+    Box {
+        if (SoboRouter.authUsed) {
+            if (isUserLoggedIn()) {
+                Button(onClick = {
+                    coroutineScope.launch {
+                        actionLogout()
+                    }
+                }) {
+                    Text(anyResText(AnyRes(Res.string.logout)))
+                }
+            } else if (!showOnlyLogoutButton) {
+                Button(onClick = {
+                    SoboRouter.navigateToRouteHandle("login")
+                }) {
+                    Text(anyResText(AnyRes(Res.string.login)))
+                }
+            }
+        }
+    }
+}
 
 @Composable
 fun PageTabsWithOutletAndLogin(
@@ -42,30 +78,6 @@ fun PageTabsWithOutletAndLogin(
 ) {
 //    var selectedTabIndex = remember { mutableStateOf(0) }
     val coroutineScope = rememberCoroutineScope()
-
-    /**
-     * login/logout button widget
-     */
-    Row {
-        Column {
-
-            if (SoboRouter.authUsed) {
-                if (isUserLoggedIn()) {
-                    Button(onClick = {
-                        coroutineScope.launch {
-                            actionLogout()
-                        }
-                    }) {
-                        Text(anyResText(AnyRes(Res.string.logout)))
-                    }
-                } else {
-                    Button(onClick = { SoboRouter.navigateToRouteHandle("login") }) {
-                        Text(anyResText(AnyRes(Res.string.login)))
-                    }
-                }
-            }
-        }
-    }
 
     /**
      * -- tabs --
@@ -95,24 +107,36 @@ fun PageTabsWithOutletAndLogin(
     /**
      * TOP-BAR TABS
      */
-    TabRow(selectedTabIndex = 0, indicator = {}) {
-        routesOut.forEachIndexed { index, obj ->
-            val isSelected = obj.handle == SoboRouter.getCurrentRoute().handle
-            Tab(
-                selected = isSelected,
-                onClick = {
-                    SoboRouter.navigateToRoute(obj)
-                },
-                modifier = if (isSelected) modSel else Modifier,
-                text = {
-                    Text(
-                        text = if (obj.title != null) anyResText(obj.title) else "",
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                        fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+
+    if (AppViewModelVM.isMenuShown.value) {
+        Row {
+            TabRow(
+                modifier = Modifier
+                    .weight(0.75f),
+                selectedTabIndex = 0,
+                indicator = {}) {
+                routesOut.forEachIndexed { index, obj ->
+                    val isSelected = obj.handle == SoboRouter.getCurrentRoute().handle
+                    Tab(
+                        selected = isSelected,
+                        onClick = {
+                            SoboRouter.navigateToRoute(obj)
+                        },
+                        modifier = if (isSelected) modSel else Modifier,
+                        text = {
+                            Text(
+                                text = if (obj.title != null) anyResText(obj.title) else "",
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis,
+                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+                            )
+                        },
                     )
-                },
-            )
+                }
+
+                loginLogoutButton(actionLogout, isUserLoggedIn, isUserLoggedInAdmin)
+            }
+
         }
     }
 

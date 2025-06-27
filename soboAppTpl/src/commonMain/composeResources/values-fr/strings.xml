@@ -1,162 +1,159 @@
 <resources>
     <string name="app_name">Kt0</string>
-    <string name="welcome_s">Welcome %1$s</string>
-    <string name="welcome">Welcome page</string>
+    <string name="welcome_s">Bienvenue %1$s</string>
+    <string name="welcome">Page d'accueil</string>
 
-    <string name="home">Home</string>
+    <string name="home">Accueil</string>
 
-    <string name="go_back">Go back</string>
-    <string name="dashboard">Dashboard</string>
-    <string name="dashboard_long_s">%1$s Dashboard - user's own homepage</string>
+    <string name="go_back">Retour</string>
+    <string name="dashboard">Tableau de bord</string>
+    <string name="dashboard_long_s">Tableau de bord %1$s - Page d'accueil de l'utilisateur</string>
 
-
-    <string name="update_settings">Update Settings</string>
-    <string name="settings_updated_ok">Settings Updated OK</string>
-    <string name="settings_updated_ok_desc">Your settings have been successfully updated.</string>
-    <string name="settings_updating_error">Settings Updating Error</string>
+    <string name="update_settings">Mettre à jour les paramètres</string>
+    <string name="settings_updated_ok">Paramètres mis à jour correctement</string>
+    <string name="settings_updated_ok_desc">Vos paramètres ont été mis à jour avec succès.</string>
+    <string name="settings_updating_error">Erreur de mise à jour des paramètres</string>
 
     <string name="actions">Actions</string>
 
-    <string name="s_about">%1$s - About</string>
-    <string name="s_help">%1$s - Help</string>
-    <string name="s_settings">%1$s - Settings</string>
+    <string name="s_about">%1$s - À propos</string>
+    <string name="s_help">%1$s - Aide</string>
+    <string name="s_settings">%1$s - Paramètres</string>
 
-    <string name="about">About</string>
-    <string name="about_s">About %1$s</string>
-    <string name="help">Help</string>
-    <string name="help_s">%1$s Help</string>
-    <string name="more_at_url_s">More at: %1$s</string>
+    <string name="about">À propos</string>
+    <string name="about_s">À propos de %1$s</string>
+    <string name="help">Aide</string>
+    <string name="help_s">Aide de %1$s</string>
+    <string name="more_at_url_s">Plus d'informations sur : %1$s</string>
 
-    <string name="settings">Settings</string>
-    <string name="list">List</string>
-    <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
+    <string name="settings">Paramètres</string>
+    <string name="list">Liste</string>
+    <string name="edit">Modifier</string>
+    <string name="delete">Supprimer</string>
 
-    <string name="open_menu">Open Menu</string>
-    <string name="close_menu">Close Menu</string>
-    <string name="contact_info">Contact Info</string>
-    <string name="color_scheme">Color scheme: %1$s</string>
-    <string name="color_scheme_dark">Color scheme: DARK</string>
-    <string name="color_scheme_light">Color scheme: LIGHT</string>
-    <string name="dark">DARK</string>
-    <string name="light">LIGHT</string>
-    <string name="total_items_n">Total items: %1$d</string>
-    <string name="page_size">Page size: </string>
-    <string name="back">BACK</string>
-    <string name="forward">FORWARD</string>
-    <string name="yes">YES</string>
-    <string name="no">NO</string>
+    <string name="open_menu">Ouvrir le menu</string>
+    <string name="close_menu">Fermer le menu</string>
+    <string name="contact_info">Coordonnées</string>
+    <string name="color_scheme">Couleur schéma : %1$s</string>
+    <string name="color_scheme_dark">Schéma de couleurs : FONCÉ</string>
+    <string name="color_scheme_light">Schéma de couleurs : CLAIR</string>
+    <string name="dark">FONCÉ</string>
+    <string name="light">CLAIR</string>
+    <string name="total_items_n">Nombre total d'éléments : %1$d</string>
+    <string name="page_size">Taille de la page : </string>
+    <string name="back">RETOUR</string>
+    <string name="forward">AVANT</string>
+    <string name="yes">OUI</string>
+    <string name="no">NON</string>
     <string name="ok">OK</string>
-    <string name="cancel">CANCEL</string>
-
+    <string name="cancel">ANNULER</string>
 
     <!-- errors -->
-    <string name="error_occurred">Error has occurred!</string>
+    <string name="error_occurred">Une erreur s'est produite !</string>
 
     <!-- HttpService:100 TODO -->
-    <string name="error_network_unavailable">Network is unavailable - check your connection.</string>
-    <string name="error_network_error">Network error</string>
-    <string name="error_network_error_desc">Network error has occurred. Please check your network connection and try again.</string>
-    <string name="error_network_error_s">Network error. Please check your network connection or contact your site administrator. Message: %1$s</string>
+    <string name="error_network_unavailable">Réseau indisponible - Vérifiez votre connexion.</string>
+    <string name="error_network_error">Erreur réseau</string>
+    <string name="error_network_error_desc">Une erreur réseau s'est produite. Veuillez vérifier votre connexion réseau et réessayer.</string>
+    <string name="error_network_error_s">Erreur réseau. Veuillez vérifier votre connexion réseau ou contacter l'administrateur de votre site. Message : %1$s</string>
 
     <!-- HttpService:107 TODO -->
-    <string name="error_no_api_server_found_s">no API server found at %1$s - check your network connection and client configuration.</string>
+    <string name="error_no_api_server_found_s">Aucun serveur API trouvé à %1$s - Vérifiez votre connexion réseau et la configuration client.</string>
 
     <!-- HttpService:141 TODO -->
-    <string name="error_incorrect_login_pass">Incorrect login or password.</string>
-    <string name="error_login_error">Login Error</string>
-    <string name="error_bad_credentials_long_p1">Bad credentials (login or password).
-        Please provide your valid credentials and try again, or
-    </string>
+    <string name="error_incorrect_login_pass">Identifiant ou mot de passe incorrect.</string>
+    <string name="error_login_error">Erreur de connexion</string>
+    <string name="error_bad_credentials_long_p1">Identifiants incorrects (identifiant ou mot de passe). Veuillez fournir vos identifiants valides et réessayer, ou
+</string>
 
-    <string name="error_bad_credentials_long_p2">*register*</string>
-    <string name="error_bad_credentials_long_p3">if you don't have an account here, and then</string>
-    <string name="error_bad_credentials_long_p4">*activate*</string>
-    <string name="error_bad_credentials_long_p5">your newly created account.</string>
+    <string name="error_bad_credentials_long_p2">*inscrivez-vous*</string>
+    <string name="error_bad_credentials_long_p3">si vous n'avez pas de compte ici, puis</string>
+    <string name="error_bad_credentials_long_p4">*activez*</string>
+    <string name="error_bad_credentials_long_p5">votre nouveau compte.</string>
 
     <!-- HttpService:252 TODO -->
-    <string name="error_not_authorized">Not authorized.</string>
+    <string name="error_not_authorized">Non autorisé.</string>
 
     <!-- HttpService:143, 446 TODO -->
-    <string name="error_api_error">API Error</string>
-    <string name="error_api_error_desc">API Error. Please check your network connection and settings.</string>
+    <string name="error_api_error">Erreur API</string>
+    <string name="error_api_error_desc">Erreur API. Veuillez vérifier votre connexion réseau et vos paramètres.</string>
 
     <!-- HttpService:276, 300 TODO -->
-    <string name="error_connection_failed">Connection failed.</string>
+    <string name="error_connection_failed">Échec de la connexion.</string>
 
     <!-- HttpService:205 TODO -->
-    <string name="error_could_not_confirm_registration_s">Could not confirm registration of %1$s.</string>
+    <string name="error_could_not_confirm_registration_s">Impossible de confirmer l'inscription de %1$s.</string>
 
     <!-- HttpService:436 TODO -->
-    <string name="error_account_exists_s">An account with email %1$s already exists.</string>
+    <string name="error_account_exists_s">Un compte avec l'adresse e-mail %1$s existe déjà.</string>
 
     <!-- HttpService:440 TODO -->
-    <string name="error_email_invalid_s">Email %1$s is invalid.</string>
-    <string name="error_unknown_error">An unknown API error occurred, please contact your site administrator.</string>
-    <string name="error_profile_updating_error">PROFILE UPDATING ERROR</string>
+    <string name="error_email_invalid_s">L'adresse e-mail %1$s n'est pas valide.</string>
+    <string name="error_unknown_error">Une erreur API inconnue s'est produite. Veuillez contacter l'administrateur de votre site.</string>
+    <string name="error_profile_updating_error">ERREUR DE MISE À JOUR DU PROFIL</string>
 
     <string name="language">
-        Language
-    </string>
+Langue
+</string>
 
     <string name="use_device_language">
-        Use system (device) language?
-    </string>
+Utiliser la langue du système (de l'appareil) ?
+</string>
 
     <string name="paste">
-        Paste
-    </string>
+Coller
+</string>
 
     <string name="copy">
-        Copy
-    </string>
+Copier
+</string>
 
     <string name="clear_all">
-        Clear all
-    </string>
+Tout effacer
+</string>
 
     <!-- ==== tabs.kt ==== -->
-    <string name="login">Login</string>
-    <string name="log_in">Log In</string>
-    <string name="logout">Logout</string>
+    <string name="login">Connexion</string>
+    <string name="log_in">Connexion</string>
+    <string name="logout">Déconnexion</string>
     <!-- ==== /tabs.kt ==== -->
 
     <!-- ==== formuserwidgets.kt ==== -->
-    <string name="email">Email</string>
-    <string name="full_name">Name</string>
+    <string name="email">E-mail</string>
+    <string name="full_name">Nom</string>
 
-    <string name="first_name">First name</string>
-    <string name="your_first_name">Your first name</string>
-    <string name="first_name_required">First name is required</string>
+    <string name="first_name">Prénom</string>
+    <string name="your_first_name">Votre prénom</string>
+    <string name="first_name_required">Prénom requis</string>
 
-    <string name="last_name">Last name</string>
-    <string name="your_last_name">Your last name</string>
-    <string name="last_name_required">Last name is required</string>
+    <string name="last_name">Nom de famille</string>
+    <string name="your_last_name">Votre nom de famille</string>
+    <string name="last_name_required">Nom de famille requis</string>
 
-    <string name="username">Username</string>
-    <string name="your_username">Your username</string>
-    <string name="username_required">Username is required</string>
+    <string name="username">Nom d'utilisateur</string>
+    <string name="your_username">Votre nom d'utilisateur</string>
+    <string name="username_required">Nom d'utilisateur requis</string>
 
-    <string name="password">Password</string>
-    <string name="your_password">Your password</string>
-    <string name="password_required">Password is required</string>
+    <string name="password">Mot de passe</string>
+    <string name="your_password">Votre mot de passe</string>
+    <string name="password_required">Mot de passe requis</string>
 
-    <string name="password_confirmation">Password confirmation</string>
-    <string name="your_password_confirmation">Your password confirmation</string>
-    <string name="password_confirmation_required">Password confirmation is required</string>
+    <string name="password_confirmation">Confirmation du mot de passe</string>
+    <string name="your_password_confirmation">Confirmation de votre mot de passe</string>
+    <string name="password_confirmation_required">Confirmation du mot de passe requise</string>
 
-    <string name="current_password">Current password</string>
-    <string name="your_current_password">Your current password</string>
-    <string name="current_password_required">Current password is required</string>
+    <string name="current_password">Mot de passe actuel</string>
+    <string name="your_current_password">Votre mot de passe actuel</string>
+    <string name="current_password_required">Mot de passe actuel requis</string>
 
-    <string name="new_password">New password</string>
-    <string name="your_new_password">Your new password</string>
-    <string name="new_password_required">New password is required</string>
+    <string name="new_password">Nouveau mot de passe</string>
+    <string name="your_new_password">Votre nouveau mot de passe</string>
+    <string name="new_password_required">Nouveau mot de passe requis</string>
 
-    <string name="new_password_confirmation">New password confirmation</string>
-    <string name="your_new_password_confirmation">Your new password confirmation</string>
-    <string name="new_password_confirmation_required">New password confirmation is required</string>
-    <string name="error_passwords_dont_match">Passwords don't match.</string>
+    <string name="new_password_confirmation">Confirmation du nouveau mot de passe</string>
+    <string name="your_new_password_confirmation">Confirmation de votre nouveau mot de passe</string>
+    <string name="new_password_confirmation_required">Confirmation du nouveau mot de passe Obligatoire</string>
+    <string name="error_passwords_dont_match">Les mots de passe ne correspondent pas.</string>
 
     <!-- ==== /formuserwidgets.kt ==== -->
 </resources>
