@@ -28,6 +28,32 @@ open class SoboViewModel : ViewModel() {
 object AppViewModelVM : SoboViewModel() {
     var isDarkMode: MutableState<Boolean> = mutableStateOf(false)
     var refreshCompose: MutableState<Boolean> = mutableStateOf(false)
+    var isLayoutShown: MutableState<Boolean> = mutableStateOf(true)
+    var isMenuShown: MutableState<Boolean> = mutableStateOf(true)
+
+    fun hideLayout() {
+        isLayoutShown.value = false
+    }
+
+    fun hideMenu() {
+        isMenuShown.value = false
+    }
+
+    fun showLayout() {
+        isLayoutShown.value = true
+    }
+
+    fun showMenu() {
+        isMenuShown.value = true
+    }
+
+    fun toggleShowLayout() {
+        isLayoutShown.value = !isLayoutShown.value
+    }
+
+    fun toggleShowMenu() {
+        isMenuShown.value = !isMenuShown.value
+    }
 }
 
 fun toggleDarkMode() {

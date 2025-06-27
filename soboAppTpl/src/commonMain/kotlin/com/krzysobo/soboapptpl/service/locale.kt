@@ -19,7 +19,9 @@ class LocaleWorkerJavaUtilLocale : LocaleWorker {
     override fun storeOriginalSystemLocale() {
         println("TESTXX -- storeOriginalSystemLocale()")
         if (originalLocale == null) {   // this may be done only ONCE in app running
+            println("TESTXX -- storeOriginalSystemLocale() - it was null, so setting it up...")
             originalLocale = Locale.getDefault()
+            println("TESTXX -- storeOriginalSystemLocale() - it was null now it is: $originalLocale...")
         }
     }
 

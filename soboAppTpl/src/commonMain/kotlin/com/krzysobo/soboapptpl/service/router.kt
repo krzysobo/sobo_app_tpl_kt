@@ -14,10 +14,10 @@ enum class USER_ROLE(val roleId: Int) {
 }
 
 data class SoboRoute(
-    val handle: String,
+    val handle: String = "",
 //    val title: String,
-    val title: AnyRes?,
-    val func: @Composable () -> Unit,
+    val title: AnyRes? = null,
+    val func: @Composable () -> Unit = {},
     val perms: List<USER_ROLE> = listOf(USER_ROLE.ANY_USER),
     val funcWithReq: (@Composable (AppRequest) -> Unit)? = null
 )
@@ -123,6 +123,11 @@ object SoboRouter {
         setCurrentRoute(route, req)
     }
 
+    fun navigateToEmpty() {
+        val route = SoboRoute()
+        setCurrentRoute(route, null, false)
+    }
+
     fun navigateToRoute(route: SoboRoute, req: AppRequest? = null) {
         setCurrentRoute(route, req)
     }
@@ -204,9 +209,11 @@ object SoboRouter {
         currentRouteHandle.value = route.handle
         currentRequest.value = req
 
-        val bsItem = SoboBackStackItem(route, req)
-        backStack.add(bsItem)
-        canGoBackRmb.value = canGoBack()
+        if (addToBackStack) {
+            val bsItem = SoboBackStackItem(route, req)
+            backStack.add(bsItem)
+            canGoBackRmb.value = canGoBack()
+        }
     }
 
     fun getPreviousBackStackItemIfAvailable(): SoboBackStackItem? {

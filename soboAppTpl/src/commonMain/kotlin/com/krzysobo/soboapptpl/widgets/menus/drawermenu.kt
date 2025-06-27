@@ -60,8 +60,78 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 
+@Composable
+fun AppLayoutWithDrawerMenu(
+    menuItems: List<SoboMenuItem> = emptyList(),
+    onClickMenuItem: (SoboMenuItem) -> Unit = {},
+    topAppBarTitle: String = "",
+    drawerAppTitle: String = "",
+) {
+    val drawerState = rememberDrawerState(DrawerValue.Closed)
+    val scope = rememberCoroutineScope()
+    SoboRouter.canGoBackRmb = remember { mutableStateOf(false) }
+    ModalDrawer(
+        drawerState = drawerState,
+        drawerContent = { // drawer menu content
+            DrawerMenu(
+                menuItems = menuItems,
+                onClickMenuItem = onClickMenuItem,
+                drawerAppTitle = drawerAppTitle,
+                drawerState = drawerState,
+                scope = scope
+            )
+        },
+        content = { // screen content
+            Scaffold(
+                // we can only open the menu with top button, to avoid accidental
+                // "drawer dragging" while navigating on the screen with the drawer closed.
+//                drawerGesturesEnabled = drawerState.isOpen,
+                topBar = {
+                    TopAppBar(
+                        title = {
+                            // I want the user to be able to reach menu even if the
+                            // back button is displayed. This may be not so common,
+                            // but still useful
+                            if (SoboRouter.canGoBackRmb.value) {
+                                MenuButton(drawerState, scope)
+                                Spacer(modifier = Modifier.width(20.dp))
+                            }
+                            Text(topAppBarTitle)
+                        },
+                        navigationIcon = {
+                            if (SoboRouter.canGoBackRmb.value) {
+                                // ------ up-button (top-bar's BackButton) ------
+                                BackButton(scope)
+                                // ------ /up-button (top-bar's BackButton) ------
+                            } else {
+                                // ------ menu button ------
+                                MenuButton(drawerState, scope)
+                                // ------ /menu button ------
+                            }
+                        },
+                        backgroundColor = MaterialTheme.colors.primary,
+                        contentColor = MaterialTheme.colors.onPrimary,
+                    )
+                }
+            ) { innerPadding ->
+                Column(
+//                    modifier = Modifier.fillMaxSize().padding(16.dp),
+                    modifier = Modifier.fillMaxSize().padding(0.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+//                    Spacer(Modifier.height(20.dp))
+                    if (SoboRouter.isRouteSet()) {
+                        routerOutlet()
+                    }
+                }
+            }
+        }
+    )
+}
+
+
 object DrawerData {
-    val selectedItemId: MutableState<String> = mutableStateOf("")
+    var selectedItemId: MutableState<String> = mutableStateOf("")
 }
 
 data class SoboMenuItem(
@@ -134,55 +204,63 @@ fun DrawerMenuBody(
     val currentRoute = SoboRouter.getCurrentRoute()
     val defaultIcon = Icons.Default.Circle
 
+    DrawerData.selectedItemId = remember { mutableStateOf("")}
     LazyColumn {
-        items(items = menuItems, key = { it.id }) {
+//        item {
+//            Text("Selected item ID: ${DrawerData.selectedItemId.value}")
+//        }
+
+        if (AppViewModelVM.isMenuShown.value) {
+
+            items(items = menuItems, key = { it.id }) {
 //            Text("Title null? ${it.title == null}")
-            if ((it.title == null) && (it.icon == null)) { // divider
-                Divider(
-                    thickness = 2.dp,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 20.dp)
-                )
-            } else {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 30.dp)
-                        .padding(start = 30.dp)
-                        .clickable {
-                            onClickMenuItem(it)
-                            DrawerData.selectedItemId.value = it.id
-                            if (it.routeHandle != "") {
-                                scope.launch {
-                                    drawerState.close()
+                if ((it.title == null) && (it.icon == null)) { // divider
+                    Divider(
+                        thickness = 2.dp,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 20.dp)
+                    )
+                } else {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 30.dp)
+                            .padding(start = 30.dp)
+                            .clickable {
+                                onClickMenuItem(it)
+                                DrawerData.selectedItemId.value = it.id
+                                if (it.routeHandle != "") {
+                                    scope.launch {
+                                        drawerState.close()
+                                    }
+                                }
+                                if (it.actionFunc != null) {
+                                    it.actionFunc.invoke(scope)
                                 }
                             }
-                            if (it.actionFunc != null) {
-                                it.actionFunc.invoke(scope)
-                            }
+                    ) {
+                        if (useIcons) {
+                            Icon(
+                                imageVector = it.icon ?: defaultIcon,
+                                contentDescription = if (it.desc != null) anyResText(it.desc) else ""
+                            )
                         }
-                ) {
-                    if (useIcons) {
-                        Icon(
-                            imageVector = it.icon ?: defaultIcon,
-                            contentDescription = if (it.desc != null) anyResText(it.desc) else ""
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(10.dp))
+                        Spacer(modifier = Modifier.width(10.dp))
 
-                    if ((it.routeHandle != "") && (currentRoute.handle == it.routeHandle)) {
-                        Text(
-                            modifier = Modifier.weight(1f),
-                            text = if (it.title != null) anyResText(it.title) else "",
-                            style = itemTextStyle.copy(fontWeight = FontWeight.Bold)
-                        )
-                    } else {
-                        Text(
-                            text = if (it.title != null) anyResText(it.title) else "",
-                            style = itemTextStyle,
-                            modifier = Modifier.weight(1f)
-                        )
+                        if ((it.routeHandle != "") && (currentRoute.handle == it.routeHandle)) {
+                            Text(
+                                modifier = Modifier.weight(1f),
+                                text = if (it.title != null) anyResText(it.title) else "",
+                                style = itemTextStyle.copy(fontWeight = FontWeight.Bold)
+                            )
+                        } else {
+                            Text(
+                                text = if (it.title != null) anyResText(it.title) else "",
+                                style = itemTextStyle,
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
                     }
                 }
             }
@@ -221,6 +299,7 @@ fun DrawerMenuBody(
             }
         }
     }
+
 }
 
 @Composable
@@ -258,72 +337,3 @@ fun BackButton(scope: CoroutineScope) {
 }
 
 
-@Composable
-fun AppLayoutWithDrawerMenu(
-    menuItems: List<SoboMenuItem> = emptyList(),
-    onClickMenuItem: (SoboMenuItem) -> Unit = {},
-    topAppBarTitle: String = "",
-    drawerAppTitle: String = "",
-) {
-    val drawerState = rememberDrawerState(DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
-    SoboRouter.canGoBackRmb = remember { mutableStateOf(false) }
-    ModalDrawer(
-        drawerState = drawerState,
-        drawerContent = { // drawer menu content
-            DrawerMenu(
-                menuItems = menuItems,
-                onClickMenuItem = onClickMenuItem,
-                drawerAppTitle = drawerAppTitle,
-                drawerState = drawerState,
-                scope = scope
-            )
-        },
-        content = { // screen content
-            Scaffold(
-                // we can only open the menu with top button, to avoid accidental
-                // "drawer dragging" while navigating on the screen with the drawer closed.
-//                drawerGesturesEnabled = drawerState.isOpen,
-                topBar = {
-                    TopAppBar(
-                        title = {
-                            // I want the user to be able to reach menu even if the
-                            // back button is displayed. This may be not so common,
-                            // but still useful
-                            if (SoboRouter.canGoBackRmb.value) {
-                                MenuButton(drawerState, scope)
-                                Spacer(modifier = Modifier.width(20.dp))
-                            }
-                            Text(topAppBarTitle)
-                        },
-                        navigationIcon = {
-                            if (SoboRouter.canGoBackRmb.value) {
-                                // ------ up-button (top-bar's BackButton) ------
-                                BackButton(scope)
-                                // ------ /up-button (top-bar's BackButton) ------
-                            } else {
-                                // ------ menu button ------
-                                MenuButton(drawerState, scope)
-                                // ------ /menu button ------
-                            }
-                        },
-                        backgroundColor = MaterialTheme.colors.primary,
-                        contentColor = MaterialTheme.colors.onPrimary,
-                    )
-                }
-            ) { innerPadding ->
-                Column(
-//                    modifier = Modifier.fillMaxSize().padding(16.dp),
-                    modifier = Modifier.fillMaxSize().padding(0.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-//                    Spacer(Modifier.height(20.dp))
-                    if (SoboRouter.isRouteSet()) {
-                        routerOutlet()
-                    }
-                }
-            }
-        }
-    )
-
-}
