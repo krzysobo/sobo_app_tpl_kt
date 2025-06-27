@@ -103,3 +103,7 @@ android {
 
     // =====
 }
+dependencies {
+//    implementation(libs.ui.text.android)
+//    implementation(libs.androidx.ui.text.desktop)
+}

@@ -2,6 +2,7 @@ package com.krzysobo.soboapptpl.viewmodel
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import com.krzysobo.soboapptpl.service.LocaleManager
 import com.krzysobo.soboapptpl.settings.AppSettingsLang
 import com.krzysobo.soboapptpl.widgets.strNotEmpty
 import com.krzysobo.soboapptpl.widgets.validateWithLambda
@@ -21,6 +22,7 @@ class LangSettingsVM : SoboViewModel() {
         try {
             AppSettingsLang.lang = lang.value
             AppSettingsLang.useSystemLang = useSystemLang.value
+            LocaleManager.useLocaleFromAppSettings()
             isFormSent.value = true
 
             return true
