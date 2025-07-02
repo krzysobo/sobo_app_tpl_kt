@@ -70,6 +70,34 @@ class AnyRes() {
         this.resArgs = resArgs
     }
 
+    //==
+    constructor(res: SoboStringResource?, argX: String) : this() {
+        this.soboRes = res
+        this.resArgs = arrayOf(argX)
+    }
+
+    constructor(res: SoboStringResource?, argX: Int) : this() {
+        this.soboRes = res
+        this.resArgs = arrayOf(argX)
+    }
+
+    constructor(res: SoboStringResource?, argX: Float) : this() {
+        this.soboRes = res
+        this.resArgs = arrayOf(argX)
+    }
+
+    constructor(res: SoboStringResource?, argX: Double) : this() {
+        this.soboRes = res
+        this.resArgs = arrayOf(argX)
+    }
+
+    constructor(res: SoboStringResource?, argX: Char) : this() {
+        this.soboRes = res
+        this.resArgs = arrayOf(argX)
+    }
+
+    //==
+
     constructor(textIn: String) : this() {
         text = textIn
     }

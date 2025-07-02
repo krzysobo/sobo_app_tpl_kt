@@ -11,6 +11,13 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.serialization)
 //    id("maven-publish")
+    id("build-acme-resources")
+}
+
+soboStringResourcesConfig {
+    resourcesDir.set("src/commonMain/composeResources")
+    outputDir.set("${buildDir}/generated/source/kmp/main/kotlin/com/krzysobo/soboapptpl/generated")
+    resourcesOutputPackage.set("com.krzysobo.soboapptpl.generated")
 }
 
 group = "com.krzysobo"
@@ -43,7 +50,7 @@ kotlin {
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(compose.materialIconsExtended)  // icons for desktop/others
                 implementation(libs.multiplatform.settings)
-
+                kotlin.srcDir("$buildDir/generated/source/kmp/main/kotlin")
                 // Add other common dependencies (e.g., kotlinx.serialization if needed)
             }
         }
