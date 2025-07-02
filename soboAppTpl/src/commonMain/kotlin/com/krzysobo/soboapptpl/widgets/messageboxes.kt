@@ -18,8 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.krzysobo.soboapptpl.generated.resources.Res
-import com.krzysobo.soboapptpl.generated.resources.error_occurred
+import com.krzysobo.soboapptpl.pubres.PubRes
 import com.krzysobo.soboapptpl.service.AnyRes
 import com.krzysobo.soboapptpl.service.anyResText
 
@@ -29,7 +28,7 @@ fun ErrorText(
     textStyle: TextStyle = TextStyle(color = Color(255, 0, 0))
 ) {
     Text(
-        if (errorText != "") errorText else anyResText(AnyRes(Res.string.error_occurred)),
+        if (errorText != "") errorText else anyResText(AnyRes(PubRes.string.error_occurred)),
         style = textStyle
     )
 }

@@ -18,10 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-
-import com.krzysobo.soboapptpl.generated.resources.Res
-import com.krzysobo.soboapptpl.generated.resources.login
-import com.krzysobo.soboapptpl.generated.resources.logout
+import com.krzysobo.soboapptpl.pubres.PubRes
 import com.krzysobo.soboapptpl.service.AnyRes
 import com.krzysobo.soboapptpl.service.SoboRoute
 import com.krzysobo.soboapptpl.service.SoboRouter
@@ -53,13 +50,13 @@ fun loginLogoutButton(
                         actionLogout()
                     }
                 }) {
-                    Text(anyResText(AnyRes(Res.string.logout)))
+                    Text(anyResText(AnyRes(PubRes.string.logout)))
                 }
             } else if (!showOnlyLogoutButton) {
                 Button(onClick = {
                     SoboRouter.navigateToRouteHandle("login")
                 }) {
-                    Text(anyResText(AnyRes(Res.string.login)))
+                    Text(anyResText(AnyRes(PubRes.string.login)))
                 }
             }
         }

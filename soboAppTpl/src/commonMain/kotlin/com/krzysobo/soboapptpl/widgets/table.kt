@@ -25,13 +25,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.krzysobo.soboapptpl.generated.resources.Res
-import com.krzysobo.soboapptpl.generated.resources.back
-import com.krzysobo.soboapptpl.generated.resources.forward
-import com.krzysobo.soboapptpl.generated.resources.no
-import com.krzysobo.soboapptpl.generated.resources.page_size
-import com.krzysobo.soboapptpl.generated.resources.total_items_n
-import com.krzysobo.soboapptpl.generated.resources.yes
+import com.krzysobo.soboapptpl.pubres.PubRes
 import com.krzysobo.soboapptpl.service.AnyRes
 import com.krzysobo.soboapptpl.service.anyResText
 
@@ -88,8 +82,8 @@ fun soboTableFooter(
 //        curPageSize = options[curOptionIndex]
     }
 
-    val totalItems = anyResText(AnyRes(Res.string.total_items_n, itemsNo))
-    val pageSize = anyResText(AnyRes(Res.string.page_size))
+    val totalItems = anyResText(AnyRes(PubRes.string.total_items_n, itemsNo))
+    val pageSize = anyResText(AnyRes(PubRes.string.page_size))
 
     Text(
         modifier = footerTextModifier,
@@ -116,7 +110,7 @@ fun soboTableFooter(
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                anyResText(AnyRes(Res.string.back))
+                anyResText(AnyRes(PubRes.string.back))
             )
         }
 
@@ -144,7 +138,7 @@ fun soboTableFooter(
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Outlined.ArrowForward,
-                anyResText(AnyRes(Res.string.forward))
+                anyResText(AnyRes(PubRes.string.forward))
             )
         }
     }
@@ -161,8 +155,8 @@ fun LazyGridScope.soboTableDataRow(
             Box(modifier = Modifier.padding(bottom = 10.dp)) {
                 if (field is Boolean) {
                     Text(
-                        text = if (field) anyResText(AnyRes(Res.string.yes)) else
-                            anyResText(AnyRes(Res.string.no))
+                        text = if (field) anyResText(AnyRes(PubRes.string.yes)) else
+                            anyResText(AnyRes(PubRes.string.no))
                     )
                 } else {
                     Text(field.toString())

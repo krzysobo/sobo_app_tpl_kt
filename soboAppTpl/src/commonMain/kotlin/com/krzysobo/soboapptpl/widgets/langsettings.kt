@@ -15,9 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.krzysobo.soboapptpl.generated.resources.Res
-import com.krzysobo.soboapptpl.generated.resources.language
-import com.krzysobo.soboapptpl.generated.resources.use_device_language
+import com.krzysobo.soboapptpl.pubres.PubRes
 import com.krzysobo.soboapptpl.service.AnyRes
 import com.krzysobo.soboapptpl.service.anyResText
 
@@ -40,7 +38,7 @@ fun SettingUseSystemLang(useSysLang: MutableState<Boolean>) {
                 .align(Alignment.CenterVertically)
                 .weight(1f)
                 .wrapContentWidth(Alignment.Start),
-            text = anyResText(AnyRes(Res.string.use_device_language)),
+            text = anyResText(AnyRes(PubRes.string.use_device_language)),
             style = TextStyle(fontSize = 18.sp)
         )
 
@@ -60,7 +58,8 @@ fun SettingUseSystemLang(useSysLang: MutableState<Boolean>) {
 fun SettingSelectLanguage(
     langList: List<LangOpt>,
     lang: MutableState<String>,
-    comboTextModifier: Modifier = Modifier.width(300.dp)) {
+    comboTextModifier: Modifier = Modifier.width(300.dp)
+) {
 
     var curOptionIndex = langList.indexOfFirst { it.code == lang.value }
     if (curOptionIndex == -1) {
@@ -76,7 +75,7 @@ fun SettingSelectLanguage(
                 .padding(end = 10.dp)
                 .align(Alignment.CenterVertically)
                 .weight(1f),
-            text = anyResText(AnyRes(Res.string.language)),
+            text = anyResText(AnyRes(PubRes.string.language)),
             style = TextStyle(fontSize = 18.sp)
         )
         soboEasyCombo(

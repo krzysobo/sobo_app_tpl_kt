@@ -44,11 +44,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.krzysobo.soboapptpl.generated.resources.Res
-import com.krzysobo.soboapptpl.generated.resources.color_scheme_dark
-import com.krzysobo.soboapptpl.generated.resources.color_scheme_light
-import com.krzysobo.soboapptpl.generated.resources.go_back
-import com.krzysobo.soboapptpl.generated.resources.open_menu
+import com.krzysobo.soboapptpl.pubres.PubRes
 import com.krzysobo.soboapptpl.service.AnyRes
 import com.krzysobo.soboapptpl.service.SoboRoute
 import com.krzysobo.soboapptpl.service.SoboRouter
@@ -204,7 +200,7 @@ fun DrawerMenuBody(
     val currentRoute = SoboRouter.getCurrentRoute()
     val defaultIcon = Icons.Default.Circle
 
-    DrawerData.selectedItemId = remember { mutableStateOf("")}
+    DrawerData.selectedItemId = remember { mutableStateOf("") }
     LazyColumn {
 //        item {
 //            Text("Selected item ID: ${DrawerData.selectedItemId.value}")
@@ -277,8 +273,8 @@ fun DrawerMenuBody(
 
                 val colorSchemeText = anyResText(
                     AnyRes(
-                        if (AppViewModelVM.isDarkMode.value) Res.string.color_scheme_dark
-                        else Res.string.color_scheme_light
+                        if (AppViewModelVM.isDarkMode.value) PubRes.string.color_scheme_dark
+                        else PubRes.string.color_scheme_light
                     )
                 )
                 val colorSchemeIcon: ImageVector =
@@ -315,7 +311,7 @@ fun MenuButton(drawerState: DrawerState, scope: CoroutineScope) {
     }) {
         Icon(
             imageVector = Icons.Default.Menu,
-            contentDescription = anyResText(AnyRes(Res.string.open_menu))
+            contentDescription = anyResText(AnyRes(PubRes.string.open_menu))
         )
     }
 }
@@ -331,7 +327,7 @@ fun BackButton(scope: CoroutineScope) {
     }) {
         Icon(
             imageVector = Icons.AutoMirrored.Default.ArrowBack,
-            contentDescription = anyResText(AnyRes(Res.string.go_back))
+            contentDescription = anyResText(AnyRes(PubRes.string.go_back))
         )
     }
 }

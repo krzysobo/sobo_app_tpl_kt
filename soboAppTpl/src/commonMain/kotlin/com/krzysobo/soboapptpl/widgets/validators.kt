@@ -23,7 +23,11 @@ fun isHex(input: String, patt: Pattern = PATTERN_HEX_ANY_LENGTH): Boolean {
     return matcher.matches()
 }
 
-fun isHexSpecifiedLength(input: String, length: Int, patt: Pattern = PATTERN_HEX_SPECIFIED_LENGTH(length)): Boolean {
+fun isHexSpecifiedLength(
+    input: String,
+    length: Int,
+    patt: Pattern = PATTERN_HEX_SPECIFIED_LENGTH(length)
+): Boolean {
     val matcher: Matcher = patt.matcher(input)
     return matcher.matches()
 }

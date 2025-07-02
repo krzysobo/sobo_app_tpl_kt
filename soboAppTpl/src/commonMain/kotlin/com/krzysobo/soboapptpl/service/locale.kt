@@ -14,23 +14,23 @@ interface LocaleWorker {
 }
 
 class LocaleWorkerJavaUtilLocale : LocaleWorker {
-    private var originalLocale: Locale? = null
+    private var originalSystemLocale: Locale? = null
 
     override fun storeOriginalSystemLocale() {
         println("TESTXX -- storeOriginalSystemLocale()")
-        if (originalLocale == null) {   // this may be done only ONCE in app running
+        if (originalSystemLocale == null) {   // this may be done only ONCE in app running
             println("TESTXX -- storeOriginalSystemLocale() - it was null, so setting it up...")
-            originalLocale = Locale.getDefault()
-            println("TESTXX -- storeOriginalSystemLocale() - it was null now it is: $originalLocale...")
+            originalSystemLocale = Locale.getDefault()
+            println("TESTXX -- storeOriginalSystemLocale() - it was null now it is: $originalSystemLocale...")
         }
     }
 
     override fun useOriginalSystemLocale() {
         println("TESTXX -- useOriginalSystemLocale()")
-        if ((originalLocale != null) &&
-            (originalLocale !== getCurrentAppLocale())
+        if ((originalSystemLocale != null) &&
+            (originalSystemLocale !== getCurrentAppLocale())
         ) {
-            Locale.setDefault(originalLocale)
+            Locale.setDefault(originalSystemLocale)
         }
     }
 
@@ -48,26 +48,52 @@ class LocaleWorkerJavaUtilLocale : LocaleWorker {
 
 }
 
-object LocaleManager {
-    var localeWorker: LocaleWorker = LocaleWorkerJavaUtilLocale()
-    var localeUpdated: MutableState<Int> = mutableStateOf(0);
+class LocaleWorkerAppSettingsOnly : LocaleWorker {
+    private var originalSystemLocale: Locale? = null
+    private var currentLanguage: String = ""
 
-    private fun countLocaleUpdated() {
-        if (localeUpdated.value < 20000) {
-            println("TESTXX -- countLocaleUpdated() -- LOCALE UPDATED: ${localeUpdated.value}")
-            localeUpdated.value += 1
-        } else {
-            localeUpdated.value = 0
-        }
+    override fun storeOriginalSystemLocale() {
+        // unnecessary in this implementation (worker),
+        // since this worker doesn't change the Locale value
+//        println("TESTXX -- storeOriginalSystemLocale()")
+//        if (originalSystemLocale == null) {   // this may be done only ONCE in app running
+//            println("TESTXX -- storeOriginalSystemLocale() - it was null, so setting it up...")
+//            originalSystemLocale = Locale.getDefault()
+//            println("TESTXX -- storeOriginalSystemLocale() - it was null now it is: $originalSystemLocale...")
+//        }
     }
+
+    override fun useOriginalSystemLocale() {
+        println("TESTXX -- useOriginalSystemLocale()")
+        currentLanguage = Locale.getDefault().language
+   }
+
+    override fun setCurrentAppLocaleByLang(lang: String) {
+        currentLanguage = lang
+    }
+
+    override fun getCurrentLang(): String {
+        return currentLanguage
+    }
+
+//    private fun getCurrentAppLocale(): Locale {
+//        return Locale.getDefault()
+//    }
+}
+
+
+object LocaleManager {
+//    var localeWorker: LocaleWorker = LocaleWorkerJavaUtilLocale()
+    var localeWorker: LocaleWorker = LocaleWorkerAppSettingsOnly()
+
+
+    fun getCurrentLang(): String {
+        return localeWorker.getCurrentLang()
+    }
+
 
     fun storeOriginalLocale() {
         localeWorker.storeOriginalSystemLocale()
-    }
-
-    fun useOriginalLocale() {
-        localeWorker.useOriginalSystemLocale()
-//        countLocaleUpdated()
     }
 
     fun useLocaleFromAppSettings() {
@@ -82,8 +108,24 @@ object LocaleManager {
 //        countLocaleUpdated()
     }
 
+
     private fun setAppLocaleByLang(lang: String) {
         localeWorker.setCurrentAppLocaleByLang(lang)
     }
 
+    private fun useOriginalLocale() {
+        localeWorker.useOriginalSystemLocale()
+//        countLocaleUpdated()
+    }
+
 }
+
+//    private fun countLocaleUpdated() {
+//        if (localeUpdated.value < 20000) {
+//            println("TESTXX -- countLocaleUpdated() -- LOCALE UPDATED: ${localeUpdated.value}")
+//            localeUpdated.value += 1
+//        } else {
+//            localeUpdated.value = 0
+//        }
+//    }
+//    var localeUpdated: MutableState<Int> = mutableStateOf(0);

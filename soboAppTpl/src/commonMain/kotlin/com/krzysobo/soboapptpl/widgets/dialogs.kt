@@ -5,10 +5,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import com.krzysobo.soboapptpl.generated.resources.Res
-import com.krzysobo.soboapptpl.generated.resources.about
-import com.krzysobo.soboapptpl.generated.resources.contact_info
-import com.krzysobo.soboapptpl.generated.resources.ok
+import com.krzysobo.soboapptpl.pubres.PubRes
 import com.krzysobo.soboapptpl.service.AnyRes
 import com.krzysobo.soboapptpl.service.anyResText
 
@@ -23,7 +20,7 @@ fun HelpAboutDialog(visible: Boolean, dialogText: String = "", onDismissRequest:
         visible,
         onDismissRequest = onDismissRequest,
         onConfirmation = onDismissRequest,
-        dialogTitle = anyResText(AnyRes(Res.string.about)),
+        dialogTitle = anyResText(AnyRes(PubRes.string.about)),
         dialogText = dialogText
     )
 }
@@ -34,7 +31,7 @@ fun HelpContactDialog(visible: Boolean, dialogText: String = "", onDismissReques
         visible,
         onDismissRequest = onDismissRequest,
         onConfirmation = onDismissRequest,
-        dialogTitle = anyResText(AnyRes(Res.string.contact_info)),
+        dialogTitle = anyResText(AnyRes(PubRes.string.contact_info)),
         dialogText = dialogText,
     )
 
@@ -47,7 +44,7 @@ fun ToggleableDialog(
     onConfirmation: () -> Unit,
     dialogTitle: String,
     dialogText: String,
-    confirmButtonText: String = anyResText(AnyRes(Res.string.ok)),
+    confirmButtonText: String = anyResText(AnyRes(PubRes.string.ok)),
     dismissButtonText: String? = null
 ) {
     var confirmBtn: (@Composable () -> Unit)?
