@@ -11,7 +11,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.serialization)
 //    id("maven-publish")
-    id("build-acme-resources")
+    id("build-sobo-resources")
 }
 
 soboStringResourcesConfig {
