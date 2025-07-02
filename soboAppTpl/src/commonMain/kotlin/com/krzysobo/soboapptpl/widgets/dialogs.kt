@@ -20,7 +20,7 @@ fun HelpAboutDialog(visible: Boolean, dialogText: String = "", onDismissRequest:
         visible,
         onDismissRequest = onDismissRequest,
         onConfirmation = onDismissRequest,
-        dialogTitle = anyResText(AnyRes(PubRes.string.about)),
+        dialogTitle = anyResText(AnyRes(PubRes.string.welcome)),
         dialogText = dialogText
     )
 }
