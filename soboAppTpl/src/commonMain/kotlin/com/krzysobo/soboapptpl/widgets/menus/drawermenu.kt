@@ -38,10 +38,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextMotion
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.krzysobo.soboapptpl.pubres.PubRes
@@ -139,6 +142,7 @@ data class SoboMenuItem(
     val actionFunc: ((scope: CoroutineScope) -> Unit)? = null,
     val route: SoboRoute? = null,
     val desc: AnyRes? = null,
+    val focusRequester: FocusRequester? = null,   // ADDED HERE
 )
 
 

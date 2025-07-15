@@ -26,7 +26,7 @@ open class SoboViewModel : ViewModel() {
 
 
 object AppViewModelVM : SoboViewModel() {
-    var isDarkMode: MutableState<Boolean> = mutableStateOf(false)
+    var isDarkMode: MutableState<Boolean> = mutableStateOf(true)
     var refreshCompose: MutableState<Boolean> = mutableStateOf(false)
     var isLayoutShown: MutableState<Boolean> = mutableStateOf(true)
     var isMenuShown: MutableState<Boolean> = mutableStateOf(true)
