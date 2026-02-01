@@ -1,32 +1,26 @@
 package com.krzysobo.soboapptpl.viewmodel
 
-import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.krzysobo.soboapptpl.service.AnyRes
-import com.krzysobo.soboapptpl.widgets.LangOpt
 import org.jetbrains.compose.resources.DrawableResource
 
-
-data class AppItem(
-    val title: AnyRes? = null,
-    val image: AnyImage? = null,
-    val focusRequester: FocusRequester? = null,   // ADDED HERE
-)
-
-
 class AnyImage() {
-    //    private var resImage: Image? = null
-    private var _resDrawable: DrawableResource? = null
+    private var _resDrawableResource: DrawableResource? = null
     private var _resPainter: Painter? = null
     private var _resVector: ImageVector? = null
+    private var _resBitmap: ImageBitmap? = null
     private var _contentDescription: AnyRes? = null
 
     val resPainter: Painter?
         get() = _resPainter
 
-    val resDrawable: DrawableResource?
-        get() = _resDrawable
+    val resBitmap: ImageBitmap?
+        get() = _resBitmap
+
+    val resDrawableResource: DrawableResource?
+        get() = _resDrawableResource
 
     val resVector: ImageVector?
         get() = _resVector
@@ -34,13 +28,21 @@ class AnyImage() {
     val contentDescription: AnyRes?
         get() = _contentDescription
 
-    constructor(resDrawable: DrawableResource, contentDescription: AnyRes? = null) : this() {
-        this._resDrawable = resDrawable
+    constructor(
+        resDrawableResource: DrawableResource,
+        contentDescription: AnyRes? = null,
+    ) : this() {
+        this._resDrawableResource = resDrawableResource
         this._contentDescription = contentDescription
     }
 
     constructor(resPainter: Painter, contentDescription: AnyRes? = null) : this() {
         this._resPainter = resPainter
+        this._contentDescription = contentDescription
+    }
+
+    constructor(resBitmap: ImageBitmap, contentDescription: AnyRes? = null) : this() {
+        this._resBitmap = resBitmap
         this._contentDescription = contentDescription
     }
 
@@ -57,9 +59,11 @@ class AnyImage() {
         return _resPainter != null
     }
 
+    fun isBitmap(): Boolean {
+        return _resBitmap != null
+    }
+
     fun isDrawableResource(): Boolean {
-        return _resDrawable != null
+        return _resDrawableResource != null
     }
 }
-
-data class LangWithFlag(val langOpt: LangOpt, val image: AnyImage)

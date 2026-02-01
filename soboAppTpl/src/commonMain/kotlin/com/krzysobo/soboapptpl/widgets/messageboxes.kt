@@ -25,7 +25,7 @@ import com.krzysobo.soboapptpl.service.anyResText
 @Composable
 fun ErrorText(
     errorText: String,
-    textStyle: TextStyle = TextStyle(color = Color(255, 0, 0))
+    textStyle: TextStyle = TextStyle(color = Color(255, 0, 0)),
 ) {
     Text(
         if (errorText != "") errorText else anyResText(AnyRes(PubRes.string.error_occurred)),
@@ -38,7 +38,7 @@ fun MessageBox(
     textHeader: String,
     textBody: String,
     borderColor: Color = Color.Blue,
-    headerColor: Color = Color.Black
+    headerColor: Color = Color.Black,
 ) {
     val annTextBody = buildAnnotatedString {
         append(textBody)
@@ -53,7 +53,7 @@ fun MessageBox(
     textHeader: String,
     textBody: AnnotatedString,
     borderColor: Color = Color.Blue,
-    headerColor: Color = Color.Black
+    headerColor: Color = Color.Black,
 ) {
     Card(
         modifier = Modifier

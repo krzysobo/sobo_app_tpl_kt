@@ -82,7 +82,7 @@ fun PasswordWidget(
             Icon(
                 if (isPassVisible) Icons.Default.VisibilityOff
                 else Icons.Default.Visibility,
-                contentDescription = ""
+                contentDescription = "",
             )
         }
     }

@@ -38,7 +38,7 @@ fun LazyGridScope.soboTableHeader(
         .border(BorderStroke(width = 1.dp, color = Color.Gray)),
     textModifier: Modifier = Modifier
         .padding(all = 5.dp),
-    textStyle: TextStyle = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold)
+    textStyle: TextStyle = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
 ) {
     items(columns) { column ->
         Box(
@@ -148,7 +148,7 @@ fun soboTableFooter(
 
 fun LazyGridScope.soboTableDataRow(
     dataRow: List<Any>,
-    extraContent: (LazyGridScope.() -> Unit)?
+    extraContent: (LazyGridScope.() -> Unit)?,
 ) {
     for (field in dataRow) {
         item {

@@ -21,7 +21,7 @@ soboStringResourcesConfig {
 }
 
 group = "com.krzysobo"
-version = "1.0.0"
+version = "1.0.1"
 
 kotlin {
     androidTarget {
@@ -79,7 +79,7 @@ android {
     namespace = "com.krzysobo.soboapptpl"
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = 24
+        minSdk = 26
         targetSdk = lint.targetSdk
     }
     compileOptions {

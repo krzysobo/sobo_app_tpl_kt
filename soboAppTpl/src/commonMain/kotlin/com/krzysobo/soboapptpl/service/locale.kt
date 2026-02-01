@@ -1,7 +1,5 @@
 package com.krzysobo.soboapptpl.service
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
 import com.krzysobo.soboapptpl.settings.AppSettingsLang
 import java.util.Locale
 
@@ -26,10 +24,11 @@ class LocaleWorkerJavaUtilLocale : LocaleWorker {
     }
 
     override fun useOriginalSystemLocale() {
-        println("TESTXX -- useOriginalSystemLocale()")
+        println("TESTXX -- useOriginalSystemLocale() - $originalSystemLocale")
         if ((originalSystemLocale != null) &&
             (originalSystemLocale !== getCurrentAppLocale())
         ) {
+            println("TESTXX -- useOriginalSystemLocale() NOW - $originalSystemLocale")
             Locale.setDefault(originalSystemLocale)
         }
     }
@@ -66,10 +65,12 @@ class LocaleWorkerAppSettingsOnly : LocaleWorker {
     override fun useOriginalSystemLocale() {
         println("TESTXX -- useOriginalSystemLocale()")
         currentLanguage = Locale.getDefault().language
-   }
+    }
 
     override fun setCurrentAppLocaleByLang(lang: String) {
         currentLanguage = lang
+        println("TESTXX --- setCurrentAppLocaleByLangQQQ - $lang")
+//        Locale.setDefault(Locale.forLanguageTag(lang))
     }
 
     override fun getCurrentLang(): String {
@@ -83,7 +84,7 @@ class LocaleWorkerAppSettingsOnly : LocaleWorker {
 
 
 object LocaleManager {
-//    var localeWorker: LocaleWorker = LocaleWorkerJavaUtilLocale()
+    //    var localeWorker: LocaleWorker = LocaleWorkerJavaUtilLocale()
     var localeWorker: LocaleWorker = LocaleWorkerAppSettingsOnly()
 
 
@@ -91,25 +92,25 @@ object LocaleManager {
         return localeWorker.getCurrentLang()
     }
 
-
     fun storeOriginalLocale() {
         localeWorker.storeOriginalSystemLocale()
     }
 
     fun useLocaleFromAppSettings() {
-        println("TESTXX --- LocaleManager -- useLocaleFromAppSettings SYSLANG: ${AppSettingsLang.useSystemLang} LANG: ${AppSettingsLang.lang}")
+//        println("TESTXX --- LocaleManager -- useLocaleFromAppSettings SYSLANG: ${AppSettingsLang.useSystemLang} LANG: ${AppSettingsLang.lang}")
         if (AppSettingsLang.useSystemLang) {
-            println("TESTXX --- LocaleManager -- useLocaleFromAppSettings - using original locale ")
+//            println("TESTXX --- LocaleManager -- useLocaleFromAppSettings - using original locale ")
+//            println("TESTXX --- LocaleManager -- useLocaleFromAppSettings - EditableSettings LANG: ${AppSettingsLang.lang} ")
             useOriginalLocale()
         } else if ((AppSettingsLang.lang != "")) {
-            println("TESTXX --- LocaleManager -- useLocaleFromAppSettings - setting NEW LANG TO ${AppSettingsLang.lang} ")
+//            println("TESTXX --- LocaleManager -- useLocaleFromAppSettings - setting NEW LANG TO ${AppSettingsLang.lang} ")
             setAppLocaleByLang(AppSettingsLang.lang)
         }
 //        countLocaleUpdated()
     }
 
 
-    private fun setAppLocaleByLang(lang: String) {
+    fun setAppLocaleByLang(lang: String) {
         localeWorker.setCurrentAppLocaleByLang(lang)
     }
 

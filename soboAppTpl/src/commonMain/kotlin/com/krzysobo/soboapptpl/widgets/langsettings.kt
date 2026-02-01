@@ -58,7 +58,7 @@ fun SettingUseSystemLang(useSysLang: MutableState<Boolean>) {
 fun SettingSelectLanguage(
     langList: List<LangOpt>,
     lang: MutableState<String>,
-    comboTextModifier: Modifier = Modifier.width(300.dp)
+    comboTextModifier: Modifier = Modifier.width(300.dp),
 ) {
 
     var curOptionIndex = langList.indexOfFirst { it.code == lang.value }

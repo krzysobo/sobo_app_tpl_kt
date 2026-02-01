@@ -35,10 +35,10 @@ fun loginLogoutButton(
     actionLogout: () -> Unit = {},
     isUserLoggedIn: () -> Boolean = { false },
     isUserLoggedInAdmin: () -> Boolean = { false },
-    showOnlyLogoutButton: Boolean = true
+    showOnlyLogoutButton: Boolean = true,
 ) {
     val coroutineScope = rememberCoroutineScope()
-    println("loginLogoutButton -- TESTXX - AUTH USED? ${SoboRouter.authUsed} IS USER LOGGED IN? ${isUserLoggedIn()} ADMIN? ${isUserLoggedInAdmin()}")
+
     /**
      * login/logout button widget
      */
@@ -70,9 +70,9 @@ fun PageTabsWithOutletAndLogin(
     isRefreshComposeRequested: () -> Boolean = { false },
     actionLogout: () -> Unit = {},
     isUserLoggedIn: () -> Boolean = { false },
-    isUserLoggedInAdmin: () -> Boolean = { false }
+    isUserLoggedInAdmin: () -> Boolean = { false },
 
-) {
+    ) {
 //    var selectedTabIndex = remember { mutableStateOf(0) }
     val coroutineScope = rememberCoroutineScope()
 

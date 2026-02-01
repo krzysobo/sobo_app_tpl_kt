@@ -7,20 +7,21 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun WaitingSpinner() {
+fun WaitingSpinner(spinnerSize: Dp = 150.dp, topPadding: Dp = 150.dp) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 150.dp),
+            .padding(top = topPadding),
         horizontalAlignment = Alignment.CenterHorizontally,
 //            verticalArrangement = Arrangement.Center
     ) {
         CircularProgressIndicator(
             modifier = Modifier
-                .width(180.dp),
+                .width(spinnerSize),
             color = MaterialTheme.colors.secondary,
         )
     }

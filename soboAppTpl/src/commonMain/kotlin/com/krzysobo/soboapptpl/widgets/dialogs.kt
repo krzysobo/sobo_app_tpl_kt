@@ -11,7 +11,7 @@ import com.krzysobo.soboapptpl.service.anyResText
 
 data class DialogVisibility(
     var helpAboutOpen: MutableState<Boolean>,
-    var helpContactOpen: MutableState<Boolean>
+    var helpContactOpen: MutableState<Boolean>,
 )
 
 @Composable
@@ -45,7 +45,7 @@ fun ToggleableDialog(
     dialogTitle: String,
     dialogText: String,
     confirmButtonText: String = anyResText(AnyRes(PubRes.string.ok)),
-    dismissButtonText: String? = null
+    dismissButtonText: String? = null,
 ) {
     var confirmBtn: (@Composable () -> Unit)?
     var dismissBtn: (@Composable () -> Unit)? = null;

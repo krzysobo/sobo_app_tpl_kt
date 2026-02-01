@@ -18,7 +18,6 @@ class LangSettingsVM : SoboViewModel() {
     }
 
     fun doUpdateAppSettings(): Boolean {
-//        println("\n\n======================= UPDATE SETTINGS ===============\n\n")
         try {
             AppSettingsLang.lang = lang.value
             AppSettingsLang.useSystemLang = useSystemLang.value

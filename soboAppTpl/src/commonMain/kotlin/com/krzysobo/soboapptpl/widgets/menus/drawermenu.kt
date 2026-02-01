@@ -39,12 +39,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextMotion
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.krzysobo.soboapptpl.pubres.PubRes
@@ -52,6 +50,7 @@ import com.krzysobo.soboapptpl.service.AnyRes
 import com.krzysobo.soboapptpl.service.SoboRoute
 import com.krzysobo.soboapptpl.service.SoboRouter
 import com.krzysobo.soboapptpl.service.anyResText
+import com.krzysobo.soboapptpl.viewmodel.AnyImage
 import com.krzysobo.soboapptpl.viewmodel.AppViewModelVM
 import com.krzysobo.soboapptpl.viewmodel.toggleDarkMode
 import com.krzysobo.soboapptpl.widgets.routerOutlet
@@ -143,6 +142,8 @@ data class SoboMenuItem(
     val route: SoboRoute? = null,
     val desc: AnyRes? = null,
     val focusRequester: FocusRequester? = null,   // ADDED HERE
+    val image: AnyImage? = null,
+    val image2: AnyImage? = null,
 )
 
 

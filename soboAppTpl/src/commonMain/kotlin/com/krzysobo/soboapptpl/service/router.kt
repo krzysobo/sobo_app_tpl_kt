@@ -240,9 +240,9 @@ object SoboRouter {
     fun goBackIfPossible(): Boolean {
         println("\ntrying to go back - goBackIfPossible-0000 - backstack size ${backStack.size}")
         if (canGoBack()) {  // current one is always in backStack
-            val bsItemCur = backStack.removeLast() // removes the CURRENT route
+            val bsItemCur = backStack.removeAt(backStack.lastIndex) // removes the CURRENT route
             println("\ntrying to go back - goBackIfPossible-0011 - removed the CURRENT route: '${bsItemCur.route.handle}'")
-            val bsItemPrev = backStack.removeLast() // removes the CURRENT - 1 route
+            val bsItemPrev = backStack.removeAt(backStack.lastIndex) // removes the CURRENT - 1 route
 
             println("\ntrying to go back - goBackIfPossible-0022 - last item was: ${bsItemPrev.route.handle} size AFTER ${backStack.size}")
             println("\ntrying to go back - goBackIfPossible-0033 - backstack size AFTER ${backStack.size}")

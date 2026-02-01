@@ -6,7 +6,6 @@ import java.util.regex.Pattern
 
 
 fun strNotEmpty(value: String): Boolean {
-
     return value != ""
 }
 
@@ -26,7 +25,7 @@ fun isHex(input: String, patt: Pattern = PATTERN_HEX_ANY_LENGTH): Boolean {
 fun isHexSpecifiedLength(
     input: String,
     length: Int,
-    patt: Pattern = PATTERN_HEX_SPECIFIED_LENGTH(length)
+    patt: Pattern = PATTERN_HEX_SPECIFIED_LENGTH(length),
 ): Boolean {
     val matcher: Matcher = patt.matcher(input)
     return matcher.matches()
@@ -35,7 +34,6 @@ fun isHexSpecifiedLength(
 
 fun validateWithLambda(errField: MutableState<Boolean>, valFunc: () -> Boolean): Boolean {
     val res = valFunc()
-//    print("validateWithLambda res: $res")
     errField.value = !res
 
     return res
