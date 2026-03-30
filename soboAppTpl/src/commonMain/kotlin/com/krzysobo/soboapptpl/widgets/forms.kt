@@ -38,7 +38,7 @@ import com.krzysobo.soboapptpl.service.anyResText
 @Composable
 fun TextFieldWithErrors(
     value: String,
-    modifier: Modifier = Modifier.padding(all = 10.dp),
+    modifier: Modifier,
     enabled: Boolean = true,
     readOnly: Boolean = false,
     textStyle: TextStyle = LocalTextStyle.current,
@@ -63,6 +63,7 @@ fun TextFieldWithErrors(
     // put here to avoid accidental overwriting: normally you don't need that.
     label: (@Composable () -> Unit)? = { Text(labelText) },
     placeHolder: (@Composable () -> Unit)? = { Text(placeHolderText) },
+    fieldPadding: PaddingValues = PaddingValues(1.dp, 1.dp, 1.dp, 1.dp),
 ) {
 
 
@@ -74,7 +75,7 @@ fun TextFieldWithErrors(
             valStr = data
             onValueChanges(data)
         },
-        modifier = modifier,
+        modifier = modifier.padding(fieldPadding),
         enabled = enabled,
         readOnly = readOnly,
         textStyle = textStyle,
