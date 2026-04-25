@@ -65,8 +65,6 @@ fun TextFieldWithErrors(
     placeHolder: (@Composable () -> Unit)? = { Text(placeHolderText) },
     fieldPadding: PaddingValues = PaddingValues(1.dp, 1.dp, 1.dp, 1.dp),
 ) {
-
-
     var valStr = value
 
     TextField(
