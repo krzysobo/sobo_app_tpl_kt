@@ -74,6 +74,9 @@ object SoboRouter {
     var lmbIsLoggedIn: () -> Boolean = { false }
     var lmbIsLoggedInAdmin: () -> Boolean = { false }
     var backStack = mutableListOf<SoboBackStackItem>()
+
+    // the back stack works as a ring: when full, the oldest item is dropped for each new one
+    var maxBackStackSize = 20
     var authUsed = true
 
     fun initRouter(
@@ -121,6 +124,12 @@ object SoboRouter {
     fun navigateToRouteHandle(routeHandle: String, req: AppRequest? = null) {
         val route: SoboRoute = getRouteByHandle(routeHandle)
         setCurrentRoute(route, req)
+    }
+
+    /** starts a fresh history at the given route - e.g. when switching between separate app sections */
+    fun resetBackStack(routeHandle: String, req: AppRequest? = null) {
+        backStack.clear()
+        navigateToRouteHandle(routeHandle, req)
     }
 
     fun navigateToEmpty() {
@@ -210,8 +219,14 @@ object SoboRouter {
         currentRequest.value = req
 
         if (addToBackStack) {
-            val bsItem = SoboBackStackItem(route, req)
-            backStack.add(bsItem)
+            // re-entering the route that is already on top must not make BACK "return" to it
+            val top = backStack.lastOrNull()
+            if (top == null || top.route.handle != route.handle || top.req != req) {
+                backStack.add(SoboBackStackItem(route, req))
+                while (backStack.size > maxBackStackSize) {
+                    backStack.removeAt(0)
+                }
+            }
             canGoBackRmb.value = canGoBack()
         }
     }
@@ -242,7 +257,8 @@ object SoboRouter {
         if (canGoBack()) {  // current one is always in backStack
             val bsItemCur = backStack.removeAt(backStack.lastIndex) // removes the CURRENT route
             println("\ntrying to go back - goBackIfPossible-0011 - removed the CURRENT route: '${bsItemCur.route.handle}'")
-            val bsItemPrev = backStack.removeAt(backStack.lastIndex) // removes the CURRENT - 1 route
+            // the previous route stays in the back stack - it is the current one from now on
+            val bsItemPrev = backStack.last()
 
             println("\ntrying to go back - goBackIfPossible-0022 - last item was: ${bsItemPrev.route.handle} size AFTER ${backStack.size}")
             println("\ntrying to go back - goBackIfPossible-0033 - backstack size AFTER ${backStack.size}")
