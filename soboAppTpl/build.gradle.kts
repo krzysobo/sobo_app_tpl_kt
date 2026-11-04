@@ -35,6 +35,10 @@ kotlin {
         androidResources {
             enable = true
         }
+        // JVM tests of the Android code (Robolectric) - src/androidHostTest
+        withHostTest {
+            isIncludeAndroidResources = true   // Robolectric: Android resources, manifest, assets
+        }
     }
 
 //    androidTarget {
@@ -44,6 +48,30 @@ kotlin {
     jvm("desktop")
 
     sourceSets {
+        // ===== tests =====
+        getByName("commonTest") {
+            dependencies {
+                implementation(libs.kotlin.test)
+                implementation(libs.kotlinx.coroutines.test)
+            }
+        }
+        getByName("desktopTest") {
+            dependencies {
+                implementation(libs.kotlin.test.junit)
+                implementation(libs.compose.ui.test)   // Compose UI tests on the JVM (no device needed)
+            }
+        }
+        getByName("androidHostTest") {
+            dependencies {
+                implementation(libs.junit)
+                implementation(libs.kotlin.test.junit)
+                implementation(libs.robolectric)
+                implementation(libs.androidx.test.core)
+                implementation(libs.kotlinx.coroutines.test)
+            }
+        }
+        // ===== /tests =====
+
         getByName("commonMain") {
             dependencies {
                 implementation(libs.compose.runtime)
